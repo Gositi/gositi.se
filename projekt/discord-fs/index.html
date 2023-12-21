@@ -26,5 +26,30 @@
 				För tillfället fokuserar jag på FUSE-delen av projektet, så ni kan vänta er mer info om detta någorlunda snart.
 			</p>
 		</div>
+		<div>
+			<h2>FUSE</h2>
+			<p>
+				Jag har nämnt att jag använder något som heter FUSE i mitt filsystem.
+				FUSE är en bit mjukvara som gör att man kan "skapa sitt eget" filsystem.
+				Man behöver bara implementera vissa metoder och FUSE sköter resten, för resten av systemet ser det ut som ett helt vanligt filsystem bara.
+				Detta är såklart väldigt användbart för mitt projekt, så jag bestämde mig för att använda FUSE.
+				Då behövde jag dock lära mig använda det först...
+			</p>
+			<p>
+				På <a href="https://thepythoncorner.com/posts/2017-02-27-writing-a-fuse-filesystem-in-python/">denna länk</a> finns en otroligt grundläggande genomgång av hur FUSE fungerar.
+				Jag lyckades skapa en <a href="minimum.py">minimal</a> version av "passthrough"-filsystemet där genom att helt enkelt testa vad jag kan ta bort utan att ha sönder det allt för mycket.
+			</p>
+			<p>
+				Nästa steg var att skapa något mera eget med bas i detta.
+				Tanken var att förlänga "passthrough"-systemet genom att bara faktiskt ge åtkomst till en tillfällig fil som är en kopia av den riktiga filen.
+				Detta skulle också underlätta ihopkopplingen med Discord senare, för då vore FUSE-delen av projektet nästan klar.
+				Ett problem bara: att skriva och läsa till filerna fungerade inte, om filsystemet alls ville fungera.
+			</p>
+			<p>
+				Just nu håller jag på att försöka lösa det, min idé är just nu att helt enkelt använda en mapp där en kopia av varje fil som aktivt används sparas.
+				När en fil inte längre används ska den flyttas tillbaks till originalmappen.
+				Om det funkar eller inte - ja det ger sig.
+			</p>
+		</div>
 	</body>
 </html>
