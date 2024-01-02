@@ -22,8 +22,8 @@
 			<p>
 				Projektet befinner sig för närvarande i idéstadiet, jag har precis skapat ett (privat) github-repo.
 				Tanken är att bygga det i två delar, något som pratar med Discord och tar emot filer samt något som pratar med FUSE och "är" ett filsystem.
-				Och såklart något som sätter ihop dessa två delar.
-				För tillfället fokuserar jag på FUSE-delen av projektet, så ni kan vänta er mer info om detta någorlunda snart.
+				Och såklart något som sätter ihop dessa två delar!
+				I nuläget är FUSE-delen klar och jag arbetar på Discord-delen, denna sida bör uppdateras löpande utefter att projektet fortskrider.
 			</p>
 		</div>
 		<div>
@@ -37,19 +37,26 @@
 			</p>
 			<p>
 				På <a href="https://thepythoncorner.com/posts/2017-02-27-writing-a-fuse-filesystem-in-python/">denna länk</a> finns en otroligt grundläggande genomgång av hur FUSE fungerar.
-				Jag lyckades skapa en <a href="minimum.py">minimal</a> version av "passthrough"-filsystemet där genom att helt enkelt testa vad jag kan ta bort utan att ha sönder det allt för mycket.
+				Jag lyckades skapa en <a href="minimum.py">minimal</a> version av "passthrough"-filsystemet där genom att helt enkelt testa vad jag kunde ta bort utan att ha sönder allt för mycket.
 			</p>
 			<p>
 				Nästa steg var att skapa något mera eget med bas i detta.
 				Tanken var att förlänga "passthrough"-systemet genom att bara faktiskt ge åtkomst till en tillfällig fil som är en kopia av den riktiga filen.
 				Detta skulle också underlätta ihopkopplingen med Discord senare, för då vore FUSE-delen av projektet nästan klar.
-				Ett problem bara: att skriva och läsa till filerna fungerade inte, om filsystemet alls ville fungera.
+				Att utföra detta innebar visst krångel, men till sist fungerade det i princip felfritt och jag kunde t.ex. redigera en fil i mitt passthrough-filsystem.
 			</p>
 			<p>
-				Just nu håller jag på att försöka lösa det, min idé är just nu att helt enkelt använda en mapp där en kopia av varje fil som aktivt används sparas.
-				När en fil inte längre används ska den flyttas tillbaks till originalmappen.
-				Om det funkar eller inte - ja det ger sig.
+				Detta steg hade också skapats genom att låta en separat klass sköta all interaktion med där filerna faktiskt bor.
+				På så vis kan den klassen senare bytas ut mot en koppling till Discord, utan att ens behöva modifiera FUSE-klassen.
 			</p>
 		</div>
+		<div>
+			<h2>Discord</h2>
+			<p>
+				Efter detta behövdes också en koppling till Discord med stöd för grundläggande upp- och nerladdning av filer.
+				Python-biblioteket discord.py användes för detta, genom en discordbot.
+				Ett problem som detta innebar är dock att både köra botten och filsystemet samtidigt, eftersom funktionsanropet för att köra botten blockerar övrig kodexekvering.
+				Detta löstes dock enkelt genom att låta botten köra i en separat tråd och kommunicera med övriga komponenter genom någon form av kö.
+			</p>
 	</body>
 </html>
