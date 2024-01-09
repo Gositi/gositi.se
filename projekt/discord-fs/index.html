@@ -20,10 +20,9 @@
 				Mer exakt, använda filer uppladdade till Discord som molnlagring, med åtkomst via ett lokalt virtuellt filsystem (genom FUSE).
 			</p>
 			<p>
-				Projektet befinner sig för närvarande i idéstadiet, jag har precis skapat ett (privat) github-repo.
-				Tanken är att bygga det i två delar, något som pratar med Discord och tar emot filer samt något som pratar med FUSE och "är" ett filsystem.
-				Och såklart något som sätter ihop dessa två delar!
-				I nuläget är FUSE-delen klar och jag arbetar på Discord-delen, denna sida bör uppdateras löpande utefter att projektet fortskrider.
+				Projektet är för tillfället fungerande, men saknar viss funktionalitet som jag gärna tar med i framtiden.
+				Det fungerar dock utmärkt för att skriva och läsa filer med storlek under 25MB (Discords gräns), även om det (såklart) är rätt långsamt.
+				När jag gör github-repot offentligt kommer det finnas <a href="https://github.com/Gositi/discord-fs">här</a>, licenserat under GNU GPL 3.0.
 			</p>
 		</div>
 		<div>
@@ -33,16 +32,15 @@
 				FUSE är en bit mjukvara som gör att man kan "skapa sitt eget" filsystem.
 				Man behöver bara implementera vissa metoder och FUSE sköter resten, för resten av systemet ser det ut som ett helt vanligt filsystem bara.
 				Detta är såklart väldigt användbart för mitt projekt, så jag bestämde mig för att använda FUSE.
-				Då behövde jag dock lära mig använda det först...
 			</p>
 			<p>
 				På <a href="https://thepythoncorner.com/posts/2017-02-27-writing-a-fuse-filesystem-in-python/">denna länk</a> finns en otroligt grundläggande genomgång av hur FUSE fungerar.
 				Jag lyckades skapa en <a href="minimum.py">minimal</a> version av "passthrough"-filsystemet där genom att helt enkelt testa vad jag kunde ta bort utan att ha sönder allt för mycket.
 			</p>
 			<p>
-				Nästa steg var att skapa något mera eget med bas i detta.
+				Nästa steg blev då givetvis att skapa något mera eget med bas i detta.
 				Tanken var att förlänga "passthrough"-systemet genom att bara faktiskt ge åtkomst till en tillfällig fil som är en kopia av den riktiga filen.
-				Detta skulle också underlätta ihopkopplingen med Discord senare, för då vore FUSE-delen av projektet nästan klar.
+				Detta skulle underlätta ihopkopplingen med Discord senare, för då vore FUSE-delen av projektet nästan klar.
 				Att utföra detta innebar visst krångel, men till sist fungerade det i princip felfritt och jag kunde t.ex. redigera en fil i mitt passthrough-filsystem.
 			</p>
 			<p>
@@ -56,7 +54,33 @@
 				Efter detta behövdes också en koppling till Discord med stöd för grundläggande upp- och nerladdning av filer.
 				Python-biblioteket discord.py användes för detta, genom en discordbot.
 				Ett problem som detta innebar är dock att både köra botten och filsystemet samtidigt, eftersom funktionsanropet för att köra botten blockerar övrig kodexekvering.
-				Detta löstes dock enkelt genom att låta botten köra i en separat tråd och kommunicera med övriga komponenter genom någon form av kö.
+				Detta löstes dock enkelt genom att låta botten köra i en separat tråd och kommunicera med övriga komponenter genom en form av kö.
 			</p>
+			<p>
+				Att därefter skriva komponenter till min Discord-klass som skötte upp- och nedladdning av filer för olika situationer var ganska enkelt.
+				Detta fungerade i princip felfritt, med bara några mindre fel jag behövde rätta till.
+				Information om vilka filer som finns och i vilket meddelande sparas lokalt, i en så kallad File Allocation Table (FAT), dock skulle jag gärna vilja ha denna på Discord någon gång i framtiden också.
+				Här var i vilket fall den första versionen av projektet i princip klart!
+			</p>
+		</div>
+		<div>
+			<h2>Framtiden: mer funktionalitet?</h2>
+			<p>
+				För tillfället är projektet i stadiet att alla delar precis börjat fungera tillsammans.
+				Dock har jag planer på att lägga till mer funktionalitet, eftersom en hel del saknas.
+				En kortare lista med saker jag planerar eller skulle vilja ha är:
+				<ul>
+					<li>Filer större än 25MB (delas upp i mindre beståndsdelar)</li>
+					<li>Mer filinformation (sparat i FAT), som datum, behörigheter, filmode, etc.</li>
+					<li>Mappar för bättre organisering av filer</li>
+					<li>FAT lagrad på Discord</li>
+				</ul>
+				Alla dessa komponenter skulle i huvudsak egentligen endast kräva en mer avancerad FAT, och inte så mycket annat.
+				Allt det grundläggande för att detta ska kunna bli verklighet är ju redan implementerat!
+				Det mest komplicerade skulle nog vara en FAT lagrad på Discord, det skulle nog behövas en del eftertanke för att detta inte ska bli alltför långsamt.
+				Eftersom botten kör i en separat tråd kanske man skulle kunna köa den uppgiften till botten då och då?
+				Tror också att discord.py har inbyggd funktionalitet för att göra något med ett visst tidsintervall, detta låter perfekt lämpat för det.
+			</p>
+		</div>
 	</body>
 </html>
