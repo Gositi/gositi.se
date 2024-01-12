@@ -17,12 +17,12 @@
 			<h1>Discord-fs</h1>
 			<p>
 				Ett försök till att göra ett filsystem, i Discord.
-				Mer exakt, använda filer uppladdade till Discord som molnlagring, med åtkomst via ett lokalt virtuellt filsystem (genom FUSE).
+				Mer exakt, använda filer uppladdade till Discord som "molnlagring", med åtkomst via ett lokalt virtuellt filsystem (genom FUSE).
 			</p>
 			<p>
-				Projektet är för tillfället fungerande, men saknar viss funktionalitet som jag gärna tar med i framtiden.
-				Det fungerar dock utmärkt för att skriva och läsa filer med storlek under 25MB (Discords gräns), även om det (såklart) är rätt långsamt.
-				När jag gör github-repot offentligt kommer det finnas <a href="https://github.com/Gositi/discord-fs">här</a>, licenserat under GNU GPL 3.0.
+				Projektet är fungerande (version 1.0.1), men saknar viss funktionalitet som jag gärna tar med i framtiden.
+				Det fungerar dock utmärkt för att skriva och läsa filer under 25MB (Discords gräns), även om det såklart är rätt långsamt.
+				Projektet finns på Github, <a href="https://github.com/Gositi/discord-fs">här</a>, om du är intresserad av att undersöka det närmare.
 			</p>
 		</div>
 		<div>
@@ -45,7 +45,7 @@
 			</p>
 			<p>
 				Detta steg hade också skapats genom att låta en separat klass sköta all interaktion med där filerna faktiskt bor.
-				På så vis kan den klassen senare bytas ut mot en koppling till Discord, utan att ens behöva modifiera FUSE-klassen.
+				På så vis kunde den klassen senare bytas ut mot en koppling till Discord, utan att ens behöva modifiera FUSE-klassen.
 			</p>
 		</div>
 		<div>
@@ -77,9 +77,13 @@
 				</ul>
 				Alla dessa komponenter skulle i huvudsak egentligen endast kräva en mer avancerad FAT, och inte så mycket annat.
 				Allt det grundläggande för att detta ska kunna bli verklighet är ju redan implementerat!
-				Det mest komplicerade skulle nog vara en FAT lagrad på Discord, det skulle nog behövas en del eftertanke för att detta inte ska bli alltför långsamt.
-				Eftersom botten kör i en separat tråd kanske man skulle kunna köa den uppgiften till botten då och då?
-				Tror också att discord.py har inbyggd funktionalitet för att göra något med ett visst tidsintervall, detta låter perfekt lämpat för det.
+				Jag ska relativt snart tänka ut en vettig struktur för en ny FAT.
+			</p>
+			<p>
+				Just nu fokuserar jag mest på småfixar och att finslipa den nuvarande koden mer, innan jag lägger på mer funktionalitet.
+				Dock planerar jag att göra en större uppdatering relativt snart med nya saker!
+				Vissa saker, som större filer eller mappar, är ganska viktigt om man vill att detta faktiskt ska vara användbart.
+				Även metadata om filer vore bra att ha med, men är betydligt mindre viktigt.
 			</p>
 		</div>
 	</body>
