@@ -20,9 +20,9 @@
 				Mer exakt, använda filer uppladdade till Discord som "molnlagring", med åtkomst via ett lokalt virtuellt filsystem (genom FUSE).
 			</p>
 			<p>
-				Projektet är fungerande (version 1.0.1), men saknar viss funktionalitet som jag gärna tar med i framtiden.
-				Det fungerar dock utmärkt för att skriva och läsa filer under 25MB (Discords gräns), även om det såklart är rätt långsamt.
-				Projektet finns på Github, <a href="https://github.com/Gositi/discord-fs">här</a>, om du är intresserad av att undersöka det närmare.
+				Projektet är fungerande, men saknar för nuvarande viss funktionalitet som jag gärna tar med i framtiden.
+				Det fungerar dock utmärkt för att skriva och läsa filer under 250MiB (Discords gräns på 25MiB per fil gånger 10 filer per meddelande), även om det såklart är rätt långsamt.
+				All kod och mer information finns på Github, <a href="https://github.com/Gositi/discord-fs">här</a>, om du är intresserad av att undersöka det närmare.
 			</p>
 		</div>
 		<div>
@@ -34,8 +34,9 @@
 				Detta är såklart väldigt användbart för mitt projekt, så jag bestämde mig för att använda FUSE.
 			</p>
 			<p>
-				På <a href="https://thepythoncorner.com/posts/2017-02-27-writing-a-fuse-filesystem-in-python/">denna länk</a> finns en otroligt grundläggande genomgång av hur FUSE fungerar.
-				Jag lyckades skapa en <a href="minimum.py">minimal</a> version av "passthrough"-filsystemet där genom att helt enkelt testa vad jag kunde ta bort utan att ha sönder allt för mycket.
+				På <a href="https://thepythoncorner.com/posts/2017-02-27-writing-a-fuse-filesystem-in-python/">denna länk</a> finns en grundläggande genomgång av hur FUSE fungerar med Python.
+				Jag lyckades skapa en minimal version av "passthrough"-filsystemet genom att testa vad jag kunde ta bort utan att ha sönder allt för mycket.
+				Detta var ett bra sätt att bekanta mig lite mer med filsystem och FUSE-biblioteket jag använde.
 			</p>
 			<p>
 				Nästa steg blev då givetvis att skapa något mera eget med bas i detta.
@@ -64,26 +65,29 @@
 			</p>
 		</div>
 		<div>
-			<h2>Framtiden: mer funktionalitet?</h2>
+			<h2>Vidareutveckling</h2>
 			<p>
-				För tillfället är projektet i stadiet att alla delar precis börjat fungera tillsammans.
-				Dock har jag planer på att lägga till mer funktionalitet, eftersom en hel del saknas.
+				Här fungerade i princip programmet, men det fanns fortfarande mycket att göra.
+				Dels upptäcktes buggar och andra problem efter hand, som behövde åtgärdas.
+				Dessutom ville jag lägga på mer funktionalitet, t.ex. stöd för större filer.
+				Detta gjordes genom att dela upp för stora filer i mindre beståndsdelar och ladda upp delarna som bilagor till samma meddelande.
+				På så vis behövdes inte ens en ändring i FAT:en.
+			</p>
+		</div>
+		<div>
+			<h2>Framtiden</h2>
+			<p>
+				Jag har självklart också planer på att lägga till än mer funktionalitet, eftersom en hel del fortfarande saknas.
 				En kortare lista med saker jag planerar eller skulle vilja ha är:
 				<ul>
-					<li>Filer större än 25MB (delas upp i mindre beståndsdelar)</li>
-					<li>Mer filinformation (sparat i FAT), som datum, behörigheter, filmode, etc.</li>
-					<li>Mappar för bättre organisering av filer</li>
+					<li>Filer större än 25MiB (d.v.s. uppdelat på flera meddelanden)</li>
+					<li>Mer metadata om filer som datum, behörigheter, filmode, etc.</li>
+					<li>Stöd för mappar i filsystemet</li>
 					<li>FAT lagrad på Discord</li>
 				</ul>
 				Alla dessa komponenter skulle i huvudsak egentligen endast kräva en mer avancerad FAT, och inte så mycket annat.
 				Allt det grundläggande för att detta ska kunna bli verklighet är ju redan implementerat!
-				Jag ska relativt snart tänka ut en vettig struktur för en ny FAT.
-			</p>
-			<p>
-				Just nu fokuserar jag mest på småfixar och att finslipa den nuvarande koden mer, innan jag lägger på mer funktionalitet.
-				Dock planerar jag att göra en större uppdatering relativt snart med nya saker!
-				Vissa saker, som större filer eller mappar, är ganska viktigt om man vill att detta faktiskt ska vara användbart.
-				Även metadata om filer vore bra att ha med, men är betydligt mindre viktigt.
+				Därför är det jag huvudsakligen arbetar med för framtiden just att tänka ut ett bra sätt att bygga en mer avancerad FAT på.
 			</p>
 		</div>
 	</body>
