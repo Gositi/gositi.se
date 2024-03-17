@@ -35,5 +35,44 @@
 				De flesta funktioner som andra har men inte jag planerar jag att lägga till inom en relativt snar framtid.
 			</p>
 		</div>
+		<div>
+			<h2>Mandelbrot</h2>
+			<a href="https://github.com/Gositi/mandelbrot">Github</a> <a href="https://www.hpcalc.org/details/9310">HPcalc</a>
+			<p>
+				Jag har gjort ett flertal program som på ett eller annat vis ritar upp mandelbrotfraktalen.
+				Det började med ett program på min miniräknare, HP Prime, som gradvis blev mer och mer avancerat, som i sin tur var inspirerat av en annan persons program!
+				Först var det ett enkelt program som i svartvitt ritade upp mandelbrotfraktalen, men med tiden lades fler och fler funktioner till.
+				I slutändan kunde programmet rita upp fraktalen med färgläggning och ett bra system för att ange position och inzoomning på ritfönstret.
+			</p>
+			<p>
+				Till slut blev programmet så avancerat att jag behövde flytta det till en dator, då i språket Python.
+				Det var helt klart en kraftfull prestandaförbättring men bilder i högre upplösning kunde ändå ta viss tid, Python är inte direkt välkänt för sin prestanda.
+				För att lösa det parallelliserade jag först programmet, innan jag också delade upp det i en server/klient-struktur.
+				Detta gjorde att jag kunde köra renderingen på flera datorer samtidigt, så länge de kunde kommunicera med servern över någon sorts nätverk.
+				Med hjälp av detta gjorde jag en bild i 16K, och om jag inte minns fel även 32K, alltså större än de största skärmarna.
+			</p>
+			<p>
+				Men min vilja att göra större bilder eller bilder med högre inzoomning var inte slut här!
+				Eftersom jag vid detta laget hade lärt mig C bestämde jag mig för att porta programmet ännu en gång.
+				Detta gav en stor prestandaförbättring - på endast en CPU-kärna gick det många gånger snabbare än det hade gjort innan på 10 kärnor samtidigt.
+				Jag kunde då skapa en 128K-bild på under ett dygn - snabbare än 16K gick tidigare (om jag inte minns fel).
+				128K-upplösning är 64 vanliga datorskärmar på bredden OCH höjden - ofattbart stort!
+				Vid det här laget var tillgång till minne det stora problemet, jag behövde använda rejält med swap-minne för att ens kunna hantera en 128K-bild.
+			</p>
+			<p>
+				Men - min vilja att göra programmet ännu snabbare var inte slut för det.
+				Nu ville jag att även C-programmet skulle köras på flera trådar, vilket gick relativt enkelt.
+				I den här vevan korskompilerade jag också programmet till Windows, för att kunna köra på familjens kraftfullaste dator.
+				Här pratar vi alltså en i7-13700K med 16 kärnor / 24 trådar - där gick 128K-rendering FORT!
+				Jag hade gärna gett mig på 256K-bilder också, men tyvärr har jag inte i närheten av tillräckligt mycket RAM/swap/page-utrymme för att kunna göra detta.
+			</p>
+			<p>
+				Dock har jag även i viss mån försökt ge mig på att rita bilder med hjälp av GPU, genom OpenCL.
+				I teorin borde denna massiva parallellisering kunna ge riktigt bra resultat.
+				Detta har dock tyvärr i stort misslyckats, jag har endast lyckats få några ganska taffliga svartvita bilder i låg upplösning.
+				Av någon anledning bara stannar allt när trycket blir för hårt på GPU:n, jag har inte riktigt lyckats utreda varför.
+				Någon gång kanske jag gör ett nytt försök - vi får se!
+			</p>
+		</div>
 	</body>
 </html>
