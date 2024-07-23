@@ -38,6 +38,22 @@
 			</p>
 		</div>
 		<div>
+			<h2>Fb-img</h2>
+			<p>
+				Fb-img (framebuffer-image) är ett Python-skript som med hjälp av PIL/Pillow läser in en bildfil och sedan interaktivt visar den på framebuffern.
+				Den anpassar bilder till skärmens storlek som standard men man kan zooma och flytta runt bilden som man behagar, samt visa bilden med 1:1 pixel-korrespondens.
+				Skriptet bör klara i princip alla tänkbara bildformat, åtminstone de som PIL/Pillow kan läsa.
+				Inom kort kommer jag troligen göra Githuben offentlig, men jag vill först strukturera upp programmet något och separerera interaktiviteten med själva bildvisaren.
+			</p>
+			<p>
+				Projektet är i huvudsak att jag kopplar ihop PIL/Pillow med framebuffern via Numpy.
+				Bilden läses in, omskalas, extraheras som en (h,w,3)-array som därefter omvandlas via Numpy till en bytearray som skrivs rakt på framebuffern.
+				Eftersom olika bibliotek gör det mesta går processen relativt fort, även om bildvisningen ändå inte sker omedelbart, huvudsakligen på grund av att omskalning av bilder tar tid.
+				Jag överväger också att expandera/kombinera projektet till ett mer allmänt bildbehandlingsbibliotek skrivet i C, möjligen med imagemagicks convert-verktyg som hjälp.
+				Detta skulle dock i sådana fall få bli ett nytt projekt.
+			</p>
+		</div>
+		<div>
 			<h2>Mandelbrot</h2>
 			<a href="https://github.com/Gositi/mandelbrot">Github</a> <a href="https://www.hpcalc.org/details/9310">HPcalc</a>
 			<p>
