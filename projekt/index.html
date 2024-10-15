@@ -27,14 +27,24 @@
 			<p>
 				Discord-fs (förkortas dc-fs) är ett program skrivet i Python som kopplar ihop Discord med datorns filsystem för att göra det möjligt att använda filer uppladdade på Discord som gratis obegränsad molnlagring.
 				Programmet är såklart inte menat att användas som riktig molnlagring, risken är alltför stor att data förloras eller att Discord blir sura och stänger ner ditt konto.
-				Som ett "proof-of-concept" är det dock ganska välfungerande, även om mycket funtionalitet man förväntar sig av ett filsystem saknas!
-				Det utvecklas aktivt men de större förändringar som har sönder redan existerande filsystem bör redan vara gjorda vid det här laget.
+				Som ett "proof-of-concept" är det dock ganska välfungerande, den mesta funktionaliteten som man förväntar sig av ett filsystem finns där!
+				Till exempel lagrar den filbehörigheter, filstorlek, senast ändrad-tider, etc.
+				Den har stöd för obegränsad filstorlek, även om det går ganska långsamt för större filer.
+				En viktig funktion som saknas är dock möjligheten att använda mappar, men jag planerar att lägga till det någorlunda snart.
 			</p>
 			<p>
 				Jag är inte den första som gör något sådant och jag kommer inte vara den sista, men mitt mål är att detta ska vara en av de bästa implementationerna!
 				Det som gör detta unikt till skillnad från många andra liknande projekt är att jag länkar ihop detta med datorns filsystem.
 				En annan person har redan gjort detta fast för Windows, men för Linux är jag mig veterligen den första!
-				De flesta funktioner som andra har men inte jag planerar jag att lägga till inom en relativt snar framtid.
+				De flesta funktioner som andra har men inte jag planerar jag att lägga till inom en relativt snar framtid, programmet utvecklas någorlunda aktivt.
+				Sist så migrerade jag från discord.py-biblioteket till att direkt använda Discords API, för att (kraftigt) förbättra programmets stabilitet och även göra det möjligt att förbättra prestandan.
+			</p>
+			<p>
+				Programmet är för stort för att det ska vara rimligt att gå igenom de tekniska detaljerna.
+				Övergripande så används ett bibliotek för att prata med FUSE (d.v.s. skapa ett virtuellt filsystem), som sedan anropar funktioner byggda med just det här filsystemet i åtanke, som därefter pratar med Discord.
+				Programmet är uppdelat i fem filer: en fil som startar igång det hela, en fil som pratar med FUSE, en fil som pratar med Discord, en fil som tolkar FAT-filen (File Allocation Table) och en fil som knyter ihop alla dessa.
+				Jag har vissa ändringar som kommer påverka stora delar av programarkitekturen planerade, i och med detta planerar jag att slimma ner lite på komplexiteten av programmet.
+				Nu har det ju tillåtits växa organiskt så det börjar sakta bli dags för en mindre refaktorering, eller åtminstone översyn av arkitekturen.
 			</p>
 		</div>
 		<div>
