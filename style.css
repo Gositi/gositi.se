@@ -1,12 +1,29 @@
-body {
-    background-color: black;
-    color: orange;
+@media (prefers-color-scheme: dark) {
+	body {
+		background-color: #1A1A1A; /* Why is it so hard to obtain a good dark grey? */
+		color: white;
+	}
+
+	body a {
+		color: beige;
+	}
+
+	body hr {
+		color: white;
+	}
 }
 
-body a {
-    color: red;
-}
+@media (prefers-color-scheme: light) {
+	body {
+		background-color: white;
+		color: darkred;
+	}
 
-body hr {
-    color: orange;
+	body a {
+		color: crimson;
+	}
+
+	body hr {
+		color: darkred;
+	}
 }
