@@ -11,7 +11,7 @@ do
 		if [ ! -f "$noext-small.$ext" ]
 		then
 			echo $file
-			convert -resize x480 "$file" "$noext-small.$ext"
+			convert -resize "720x720>" "$file" "$noext-small.$ext"
 		fi
 	fi
 done
