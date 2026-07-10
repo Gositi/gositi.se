@@ -31,3 +31,9 @@
 body img {
 	border: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 }
+
+hr.sep {
+	text-align: left;
+	margin-left: 0px;
+	margin-right: 50%;
+}
