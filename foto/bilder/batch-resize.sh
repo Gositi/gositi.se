@@ -8,10 +8,13 @@ do
 	ext="${file##*.}"
 	if [[ "${ext,,}" == "jpg" ]] && [[ "${noext}" != *"-small" ]]
 	then
-		if [ ! -f "$noext-small.$ext" ]
+		if [ ! -f "$noext-small.jpg" ]
 		then
 			echo $file
-			convert "$file" -resize "720x720>" -interlace Plane "$noext-small.$ext"
+			convert "$file" -resize "720x720>" tmp.png
+			convert tmp.png -resize "720x720>" -quality 90 -interlace Plane "$noext-small.jpg"
+			cjxl -p tmp.png "$noext-small.jxl"
+			rm tmp.png
 		fi
 	fi
 done
