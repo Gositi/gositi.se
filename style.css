@@ -36,7 +36,7 @@ body {
 
 img {
 	display: inline-block;
-	border: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
+	outline: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 }
 
 picture {
@@ -52,7 +52,6 @@ picture img {
 	max-width: 100cqw;
 	max-height: 100cqw;
 	margin-inline: auto;
-	margin-left: -1px;
 }
 
 hr {
