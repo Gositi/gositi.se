@@ -1,6 +1,6 @@
 @media (prefers-color-scheme: dark) {
 	body {
-		background-color: #1A1A1A; /* Why is it so hard to obtain a good dark grey? */
+		background-color: #1A1A1A;	/* Why is it so hard to obtain a good dark grey? */
 		color: white;
 	}
 
@@ -28,12 +28,36 @@
 	}
 }
 
-body img {
+body {
+	width: calc(100%/1.08);
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+img {
+	display: inline-block;
 	border: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 }
 
+picture {
+	display: inline-block;
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-bottom: 0;
+}
+
+picture img {
+	max-width: 100cqw;
+	max-height: 100cqw;
+}
+
+hr {
+	margin-left: -4%;
+	margin-right: -4%;
+}
+
 hr.sep {
-	text-align: left;
-	margin-left: 0px;
-	margin-right: 50%;
+	margin: revert;
+	width: 100%;
 }

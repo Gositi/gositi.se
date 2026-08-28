@@ -11,8 +11,8 @@ do
 		if [ ! -f "$noext-small.jpg" ]
 		then
 			echo $file
-			convert "$file" -resize "720x720>" tmp.png
-			convert tmp.png -resize "720x720>" -quality 90 -interlace Plane "$noext-small.jpg"
+			convert "$file" -resize "960x960>" tmp.png
+			convert tmp.png -resize "960x960>" -quality 90 -interlace Plane "$noext-small.jpg"
 			cjxl -p tmp.png "$noext-small.jxl"
 			rm tmp.png
 		fi
