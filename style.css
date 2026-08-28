@@ -52,6 +52,7 @@ picture img {
 	max-width: 100cqw;
 	max-height: 100cqw;
 	margin-inline: auto;
+	margin-left: -1px;
 }
 
 hr {
