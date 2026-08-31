@@ -57,7 +57,6 @@ picture {
 	width: 96%;
 	margin-left: 2%;
 	margin-bottom: 0;
-	outline: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 	container-type: inline-size;
 }
 
@@ -65,7 +64,10 @@ picture img {
 	display: block;
 	max-width: 100cqw;
 	max-height: 100cqw;
+	width: auto;
+	height: auto;
 	margin-inline: auto;
+	outline: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 }
 
 hr.sep {
