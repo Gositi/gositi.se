@@ -29,6 +29,20 @@
 }
 
 body {
+	margin: 0;
+}
+
+header {
+	width: calc(100%/1.08);
+	max-width: 1000px;
+	margin: 0.5rem auto;
+}
+main {
+	width: calc(100%/1.08);
+	max-width: 1000px;
+	margin: 0 auto;
+}
+footer {
 	width: calc(100%/1.08);
 	max-width: 1000px;
 	margin: 0.5rem auto;
@@ -36,7 +50,6 @@ body {
 
 img {
 	display: inline-block;
-	outline: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 }
 
 picture {
@@ -44,6 +57,7 @@ picture {
 	width: 96%;
 	margin-left: 2%;
 	margin-bottom: 0;
+	outline: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
 	container-type: inline-size;
 }
 
@@ -52,12 +66,6 @@ picture img {
 	max-width: 100cqw;
 	max-height: 100cqw;
 	margin-inline: auto;
-}
-
-hr {
-	width: 100vw;
-	margin-left: calc((100% - 100vw) / 2);
-	box-sizing: border-box;
 }
 
 hr.sep {
