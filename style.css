@@ -4,11 +4,11 @@
 		color: white;
 	}
 
-	body a {
+	a {
 		color: beige;
 	}
 
-	body hr {
+	hr {
 		color: white;
 	}
 }
@@ -19,11 +19,11 @@
 		color: darkred;
 	}
 
-	body a {
+	a {
 		color: crimson;
 	}
 
-	body hr {
+	hr {
 		color: darkred;
 	}
 }
@@ -48,18 +48,15 @@ footer {
 	margin: 0.5rem auto;
 }
 
-img {
-	display: inline-block;
+figure {
+	margin: 1em 0;
 }
-
 picture {
 	display: inline-block;
 	width: 96%;
 	margin-left: 2%;
-	margin-bottom: 0;
 	container-type: inline-size;
 }
-
 picture img {
 	display: block;
 	max-width: 100cqw;
@@ -68,6 +65,12 @@ picture img {
 	height: auto;
 	margin-inline: auto;
 	outline: 1px solid #777;	/* Should be close to middle-grey, reasonable choice for image border. */
+}
+figcaption {
+	font-style: italic;
+}
+figcaption time {
+	font-style: normal;
 }
 
 hr.sep {
