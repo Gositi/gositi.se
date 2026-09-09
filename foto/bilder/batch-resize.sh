@@ -7,9 +7,11 @@ do
 
 	if [ ! -f "$noext 960.jxl" ]
 	then
+		echo "$file"
+		echo "$noext" | sed -n "s/ /%20/gp"
 		convert "$file" -resize "960x960>" tmp.png
 		convert tmp.png -quality 85 -interlace Plane "$noext 960.jpg"
-		cjxl -p -d 1.25 tmp.png "$noext 960.jxl"
+		cjxl --quiet -p -d 1.25 tmp.png "$noext 960.jxl"
 		rm tmp.png
 	fi
 
@@ -17,7 +19,7 @@ do
 	then
 		convert "$file" -resize "1920x1920>" tmp.png
 		convert tmp.png -quality 60 -interlace Plane "$noext 1920.jpg"
-		cjxl -p -d 2.5 tmp.png "$noext 1920.jxl"
+		cjxl --quiet -p -d 2.5 tmp.png "$noext 1920.jxl"
 		rm tmp.png
 	fi
 done
